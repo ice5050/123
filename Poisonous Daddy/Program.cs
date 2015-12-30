@@ -1,4 +1,4 @@
-﻿using Ensage;
+using Ensage;
 using Ensage.Common;
 using Ensage.Common.Extensions;
 using SharpDX;
@@ -31,7 +31,7 @@ namespace Poisonous_Daddy
 
             if (me.ClassID != ClassID.CDOTA_Unit_Hero_Venomancer)
                 return;
-
+            var builds = ObjectMgr.GetEntities<Building>().Where(b => b.Team !=me.Team && b.IsVisible && (b.ClassID == ClassID.CDOTA_BaseNPC_Tower || b.ClassID == ClassID.CDOTA_BaseNPC_Barracks));
             var Level = me.Spellbook.SpellE.Level - 1;
             var enemies = ObjectMgr.GetEntities<Hero>().Where(hero => hero.IsAlive && !hero.IsIllusion && hero.IsVisible && hero.Team != me.Team).ToList();
             var creeps = ObjectMgr.GetEntities<Creep>().Where(creep => (creep.ClassID == ClassID.CDOTA_BaseNPC_Creep_Lane || creep.ClassID == ClassID.CDOTA_BaseNPC_Creep_Siege) && creep.IsAlive && creep.IsVisible && creep.IsSpawned && creep.Health <= ((int)PlagueWardDamage[Level] * (1 - creep.DamageResist) + 30)).ToList();
@@ -41,8 +41,31 @@ namespace Poisonous_Daddy
             if (!enemies.Any() || !creeps.Any() || !wards.Any() || !(Level > 0))
                 return;
         #endregion
+            #region builds
 
-        #region enemy
+            foreach (var b in builds)
+            {
+
+                if (b.Health > 0)
+                {
+                    foreach (var v in wards)
+                    {
+                        if (GetDistance2D(b.Position, v.Position) < v.AttackRange && Utils.SleepCheck(v.Handle.ToString()))
+                        {
+                            v.Attack(b);
+                            Utils.Sleep(200, v.Handle.ToString());
+                        }
+
+                    }
+
+                }
+
+
+            }
+
+            #endregion
+
+            #region enemy
             foreach (var enemy in enemies)
             {
                 if (enemy.Health > 0)
