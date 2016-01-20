@@ -97,7 +97,11 @@ namespace Poisonous_Daddy
                             if (t!=null && Utils.SleepCheck("1"))
                             {
                                  v.Hold();
-                                 Utils.Sleep(120, "1");
+                                  v.Hold();
+                                   v.Hold();
+                                    v.Hold();
+                                     v.Hold();
+                                      Utils.Sleep(120, "1");
                               
 
                         }
