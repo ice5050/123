@@ -97,11 +97,7 @@ namespace Poisonous_Daddy
                             if (t!=null && Utils.SleepCheck("1"))
                             {
                                  v.Hold();
-                                  v.Hold();
-                                   v.Hold();
-                                    v.Hold();
-                                     v.Hold();
-                                      Utils.Sleep(120, "1");
+                                 Utils.Sleep(120, "1");
                               
 
                         }
@@ -116,6 +112,7 @@ namespace Poisonous_Daddy
                             if (GetDistance2D(creep.Position, v.Position) < v.AttackRange && Utils.SleepCheck(v.Handle.ToString()))
                             {
                                 v.Attack(creep);
+                                v.Stop();
                                 Utils.Sleep(1000, v.Handle.ToString());
                             }
                         }
@@ -128,6 +125,7 @@ namespace Poisonous_Daddy
                         if (GetDistance2D(creep.Position, v.Position) < v.AttackRange && Utils.SleepCheck(v.Handle.ToString()))
                         {
                             v.Attack(creep);
+                             v.Stop();
                             Utils.Sleep(1000, v.Handle.ToString());
                         }
                     }
