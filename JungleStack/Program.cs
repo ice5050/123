@@ -28,7 +28,7 @@ namespace JungleStack
         private const int StartTimeRadiant = 47;
         private const int StartTimeDire = 45;
 
-        private const int AttackTimeRadiant = 51;
+        private const int AttackTimeRadiant = 52;
         private const int AttackTimeDire = 52;
 
 
@@ -261,7 +261,7 @@ namespace JungleStack
                     bestDistance = distance;
                     bestCreep = creep;
                 }
-                
+
             }
             return bestCreep;
         }
